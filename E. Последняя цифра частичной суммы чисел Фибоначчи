@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int last_digit_fibonacci_sum(long long m, long long n) {
+    vector<int> fib_mod = {0, 1};
+    for (int i = 2; i < 60; i++) {
+        fib_mod.push_back((fib_mod[i-1] + fib_mod[i-2]) % 10);
+    }
+
+    auto get_last_digit = [&](long long k) {
+        return fib_mod[k % 60];
+    };
+
+    return (get_last_digit(n+2) - get_last_digit(m+1) + 10) % 10;
+}
+
+int main() {
+    long long m, n;
+    cin >> m >> n;
+    cout << last_digit_fibonacci_sum(m, n);
+}
