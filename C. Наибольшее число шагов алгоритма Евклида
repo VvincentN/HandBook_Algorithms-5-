@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+    int n;
+    std::cin >> n;
+
+    std::vector<long long> fib;
+    fib.push_back(0);
+    fib.push_back(1);
+
+    long long nextFib = 0;
+    while (true) {
+        nextFib = fib[fib.size() - 1] + fib[fib.size() - 2];
+        if (nextFib > n) {
+            break;
+        }
+        fib.push_back(nextFib);
+    }
+
+    std::cout << fib[fib.size() - 2] << " " << fib[fib.size() - 1];
+}
